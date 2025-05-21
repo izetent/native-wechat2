@@ -22,75 +22,86 @@ public class NativeWechatModule extends NativeWechatSpec {
   }
 
   @Override
-  public Map<String, Object> getConstants() {
+  public Map<String, Object> getTypedExportedConstants() {
     return NativeWechatModuleImpl.getConstants();
   }
 
-  @ReactMethod
+  @Override
   public void sendAuthRequest(ReadableMap request, Callback callback) {
     moduleImpl.sendAuthRequest(request, callback);
   }
 
-  @ReactMethod
+  @Override
   public void registerApp(ReadableMap request) {
     moduleImpl.registerApp(request);
   }
 
-  @ReactMethod
+  @Override
   public void shareText(ReadableMap request, Callback callback) {
     moduleImpl.shareText(request, callback);
   }
 
-  @ReactMethod
+  @Override
   public void shareImage(ReadableMap request, Callback callback) {
     moduleImpl.shareImage(request, callback);
   }
 
-  @ReactMethod
+  @Override
   public void shareVideo(ReadableMap request, Callback callback) {
     moduleImpl.shareVideo(request, callback);
   }
 
-  @ReactMethod
+  @Override
   public void shareWebpage(ReadableMap request, Callback callback) {
     moduleImpl.shareWebpage(request, callback);
   }
 
-  @ReactMethod
+  @Override
   public void shareMiniProgram(ReadableMap request, Callback callback) {
     moduleImpl.shareMiniProgram(request, callback);
   }
 
-  @ReactMethod
+  @Override
   public void isWechatInstalled(Callback callback) {
     moduleImpl.isWechatInstalled(callback);
   }
 
-  @ReactMethod
+  @Override
   public void requestPayment(ReadableMap request, Callback callback) {
     moduleImpl.requestPayment(request, callback);
   }
 
-  @ReactMethod
+  @Override
   public void requestSubscribeMessage(ReadableMap request, Callback callback) {
     moduleImpl.requestSubscribeMessage(request, callback);
   }
 
-  @ReactMethod
+  @Override
   public void launchMiniProgram(ReadableMap request, Callback callback) {
     moduleImpl.launchMiniProgram(request, callback);
   }
 
-  @ReactMethod
+  @Override
   public void openCustomerService(ReadableMap request, Callback callback) {
     moduleImpl.openCustomerService(request, callback);
   }
+  @Override
+  public void checkUniversalLinkReady(Callback callback) {
+    try {
+      WritableMap result = Arguments.createMap();
+      result.putBoolean("isSupported", true);
+      result.putString("message", "Universal Link is supported on this device");
+      callback.invoke(null, result); 
+    } catch (Exception e) {
+      callback.invoke(e.getMessage(), null); 
+    }
+  }
 
-  @ReactMethod
+  @Override
   public void addListener(String eventName) {
   }
 
-  @ReactMethod
-  public void removeListeners(Integer count) {
+  @Override
+  public void removeListeners(double count) {
   }
 }

@@ -28,6 +28,7 @@ Pod::Spec.new do |s|
     }
 
     s.dependency "React-Codegen"
+    s.dependency "React-RCTFabric"
     s.dependency "RCT-Folly"
     s.dependency "RCTRequired"
     s.dependency "RCTTypeSafety"
