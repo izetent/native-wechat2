@@ -1,6 +1,6 @@
-import { TurboModuleRegistry as v, NativeModules as y, NativeEventEmitter as P } from "react-native";
-import { useState as b, useEffect as w } from "react";
-function M(e, t, n, r) {
+import { TurboModuleRegistry as v, NativeModules as y, NativeEventEmitter as b } from "react-native";
+import { useState as w, useEffect as M } from "react";
+function P(e, t, n, r) {
   function s(a) {
     return a instanceof n ? a : new n(function(h) {
       h(a);
@@ -58,24 +58,24 @@ const i = (e) => (...t) => new Promise((n, r) => {
   e(...t, (s, a) => {
     s ? r(a) : n(a);
   });
-}), { Wechat: E } = y, o = v.get("Wechat") || E, q = () => {
-  const [e, t] = b(!1);
-  return w(() => {
-    R().then(() => t(!0)).catch(() => t(!1));
+}), o = v.get("Wechat") || y.Wechat, I = () => {
+  const [e, t] = w(!1);
+  return M(() => {
+    S().then(() => t(!0)).catch(() => t(!1));
   }, []), e;
 }, f = new W();
 let p = !1;
-const S = (e) => new Error(`[Native Wechat]: (${e.errorCode}) ${e.errorStr}`), c = (e) => {
+const E = (e) => new Error(`[Native Wechat]: (${e.errorCode}) ${e.errorStr}`), c = (e) => {
   if (!p)
     throw new Error(`Please register SDK before invoking ${e}`);
-}, C = () => i(o.checkUniversalLinkReady)(), k = (e) => {
+}, q = () => i(o.checkUniversalLinkReady)(), C = (e) => {
   p || (o.registerApp(e), p = !0);
-  const n = new P(o).addListener("NativeWechat_Response", (r) => {
-    const s = r.errorCode ? S(r) : null;
+  const n = new b(o).addListener("NativeWechat_Response", (r) => {
+    const s = r.errorCode ? E(r) : null;
     f.dispatch(r.type, s, r);
   });
   return () => n.remove();
-}, R = () => i(o.isWechatInstalled)(), x = (e = {
+}, S = () => i(o.isWechatInstalled)(), k = (e = {
   scope: "snsapi_userinfo",
   state: ""
 }) => {
@@ -84,39 +84,39 @@ const S = (e) => new Error(`[Native Wechat]: (${e.errorCode}) ${e.errorStr}`), c
   return new Promise((n, r) => {
     t(e).catch(r), f.once("SendAuthResp", (s, a) => s ? r(s) : n(a));
   });
-}, A = (e) => (c("shareText"), i(o.shareText)(e)), T = (e) => (c("shareImage"), i(o.shareImage)(e)), _ = (e) => (c("shareVideo"), i(o.shareVideo)(e)), L = (e) => (c("shareWebpage"), i(o.shareWebpage)(e)), Q = (e) => (c("shareMiniProgram"), i(o.shareMiniProgram)(e)), V = (e) => {
+}, x = (e) => (c("shareText"), i(o.shareText)(e)), A = (e) => (c("shareImage"), i(o.shareImage)(e)), T = (e) => (c("shareVideo"), i(o.shareVideo)(e)), _ = (e) => (c("shareWebpage"), i(o.shareWebpage)(e)), L = (e) => (c("shareMiniProgram"), i(o.shareMiniProgram)(e)), Q = (e) => {
   c("requestPayment");
   const t = i(o.requestPayment);
-  return new Promise((n, r) => M(void 0, void 0, void 0, function* () {
+  return new Promise((n, r) => P(void 0, void 0, void 0, function* () {
     t(e).catch(r), f.once("PayResp", (s, a) => s ? r(s) : n(a));
   }));
-}, $ = (e) => {
+}, V = (e) => {
   c("requestSubscribeMessage");
   const t = i(o.requestSubscribeMessage);
   return e.scene = +e.scene, t(e);
-}, U = (e) => (c("openCustomerService"), i(o.openCustomerService)(e)), B = (e) => {
-  c("launchMiniProgram"), e.miniProgramType = +e.miniProgramType;
+}, $ = (e) => (c("openCustomerService"), i(o.openCustomerService)(e)), U = (e) => {
+  c("launchMiniProgram"), e.miniprogramType = +e.miniprogramType;
   const t = i(o.launchMiniProgram);
   return f.once("WXLaunchMiniProgramResp", (n, r) => {
     var s;
     if (!n)
       return (s = e.onNavBack) === null || s === void 0 ? void 0 : s.call(e, r);
   }), t(e);
-}, D = o.getConstants();
+}, B = o.getConstants();
 export {
-  D as NativeWechatConstants,
-  C as checkUniversalLinkReady,
-  R as isWechatInstalled,
-  B as launchMiniProgram,
-  U as openCustomerService,
-  k as registerApp,
-  V as requestPayment,
-  $ as requestSubscribeMessage,
-  x as sendAuthRequest,
-  T as shareImage,
-  Q as shareMiniProgram,
-  A as shareText,
-  _ as shareVideo,
-  L as shareWebpage,
-  q as useWechatInstalled
+  B as NativeWechatConstants,
+  q as checkUniversalLinkReady,
+  S as isWechatInstalled,
+  U as launchMiniProgram,
+  $ as openCustomerService,
+  C as registerApp,
+  Q as requestPayment,
+  V as requestSubscribeMessage,
+  k as sendAuthRequest,
+  A as shareImage,
+  L as shareMiniProgram,
+  x as shareText,
+  T as shareVideo,
+  _ as shareWebpage,
+  I as useWechatInstalled
 };
