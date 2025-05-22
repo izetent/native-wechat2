@@ -26,7 +26,7 @@ const assertRegisteration = (name: string) => {
 
 export const checkUniversalLinkReady = () => {
   const fn = promisifyNativeFunction<UniversalLinkCheckingResponse>(
-    NativeModule.checkUniversalLinkReady,
+    (NativeModule as any).checkUniversalLinkReady,
   );
 
   return fn();

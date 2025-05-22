@@ -85,17 +85,6 @@ public class NativeWechatModule extends NativeWechatSpec {
   public void openCustomerService(ReadableMap request, Callback callback) {
     moduleImpl.openCustomerService(request, callback);
   }
-  @Override
-  public void checkUniversalLinkReady(Callback callback) {
-    try {
-      WritableMap result = Arguments.createMap();
-      result.putBoolean("isSupported", true);
-      result.putString("message", "Universal Link is supported on this device");
-      callback.invoke(null, result); 
-    } catch (Exception e) {
-      callback.invoke(e.getMessage(), null); 
-    }
-  }
 
   @Override
   public void addListener(String eventName) {

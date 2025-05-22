@@ -20,8 +20,6 @@ export interface Spec extends TurboModule {
 
   isWechatInstalled(callback: () => void): void;
 
-  checkUniversalLinkReady(callback: () => void): void;
-
   sendAuthRequest(
     request: {
       scope: string;
